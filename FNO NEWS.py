@@ -5,6 +5,7 @@ import os
 
 
 # Load API Key (Streamlit Secrets)
+# Priority: Streamlit Secrets > OS Environment
 API_KEY = None
 if "GOOGLE_API_KEY" in st.secrets:
 API_KEY = st.secrets["GOOGLE_API_KEY"]
