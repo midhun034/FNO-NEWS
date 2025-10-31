@@ -5,12 +5,11 @@ import os
 
 
 # Load API Key (Streamlit Secrets)
+API_KEY = None
 if "GOOGLE_API_KEY" in st.secrets:
 API_KEY = st.secrets["GOOGLE_API_KEY"]
 elif "GOOGLE_API_KEY" in os.environ:
 API_KEY = os.environ["GOOGLE_API_KEY"]
-else:
-API_KEY = None # No API key found
 
 
 # NSE F&O Stocks List (Latest from NSE)
