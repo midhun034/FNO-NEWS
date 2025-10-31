@@ -45,8 +45,19 @@ if not API_KEY:
 selected_stock = st.sidebar.selectbox("Select F&O Stock", sorted(fno_stocks))
 st.sidebar.info("Showing latest headlines for selected stock.")
 
+# Time period filters
+import datetime as dt
+periods = {
+    "1 Week": dt.date.today() - dt.timedelta(days=7),
+    "1 Month": dt.date.today() - dt.timedelta(days=30),
+    "3 Months": dt.date.today() - dt.timedelta(days=90),
+    "6 Months": dt.date.today() - dt.timedelta(days=180),
+}
+selected_period = st.sidebar.selectbox("Time Range", list(periods.keys()))
+start_date = periods[selected_period]
+
 # Google News API Endpoint
-url = f"https://newsapi.org/v2/everything?q={selected_stock}%20NSE&sortBy=publishedAt&apiKey={API_KEY}"
+url = f"https://newsapi.org/v2/everything?q={selected_stock}%20NSE&from={start_date}&sortBy=publishedAt&apiKey={API_KEY}"
 
 response = requests.get(url)
 
